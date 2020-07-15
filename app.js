@@ -4,7 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan'); // Helps with login messaging
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var portfoliosRouter = require('./routes/portfolios');
 
 var app = express();
 
@@ -15,6 +15,6 @@ app.use(cookieParser()); // process and cookies
 app.use(express.static(path.join(__dirname, 'public'))); // generating path and joing public
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/portfolios', portfoliosRouter);
 
 module.exports = app;
