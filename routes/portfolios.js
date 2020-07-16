@@ -1,13 +1,12 @@
 var express = require('express');
 var router = express.Router();
-// const mongoose = require('mongoose')
+const { PortfolioModel } = require('../schema')
 
-const portfolios = [
-  {name: "hey"}
-]
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res) {
+  const portfolios = await PortfolioModel.find()
+  console.log(portfolios)
   res.send(portfolios);
 });
 
