@@ -23,6 +23,6 @@ app.use(express.static(path.join(__dirname, 'public'))); // generating path and 
 app.use('/', indexRouter);
 app.use('/api/portfolios', portfoliosRouter);
 
-module.exports = app;
+module.exports =  app
 
 // fluffy: 8hZtTwsPNV72ysh3
