@@ -1,23 +1,21 @@
 var express = require('express');
 var router = express.Router();
+const cors = require('cors')
 const { PortfolioModel } = require('../schema')
 
-
+// const portfolios = { uid:"me" , bio: "smelly" ,} // comment this out when using the await VVV
 
 /* GET portfolios listing. */
 router.get('/', async function(req, res) {
-  const portfolios = await PortfolioModel.find()
+  const portfolios = await PortfolioModel.find()    
   console.log(portfolios)
   res.send(portfolios);
 });
 
-router.post('/', async function (req, res) {
-  console.log("body")
-  console.log(req.body)
-  db.push(req.body)
-  res.send(200)
+router.post('/', cors(),async function (req, res) {
+  await PortfolioModel.create(req.body)
+  res.sendStatus(201)
 });
-
 
 // router.get('/:id', async function (req, res) {
 //   const portfolios = await PortfolioModel.find()

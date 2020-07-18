@@ -15,6 +15,6 @@ const PortfolioSchema = new mongoose.Schema({
 
 // }) 
 
-const PortfolioModel = mongoose.model("portfolio", PortfolioSchema) // the "user" refers to the DB collection
+const PortfolioModel = mongoose.model("portfolios", PortfolioSchema) // the "user" refers to the DB collection
 
 module.exports = { PortfolioSchema, PortfolioModel}
