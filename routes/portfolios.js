@@ -3,7 +3,7 @@ var router = express.Router();
 const cors = require('cors')
 const { PortfolioModel } = require('../schema')
 
-// const portfolios = { uid:"me" , bio: "smelly" ,} // comment this out when using the await VVV
+// can make this less dry
 
 /* GET portfolios listing. */
 router.get('/', async function(req, res) {
@@ -17,10 +17,33 @@ router.post('/', cors(),async function (req, res) {
   res.sendStatus(201)
 });
 
+
+
+
 // router.get('/:id', async function (req, res) {
 //   const portfolios = await PortfolioModel.find()
+// res.send(portfolios[req.params.id])
 //   console.log(portfolios)
 //   res.send(portfolios)
 // });
+
+
+// router.put('/:id', async function (req, res) {
+//   const portfolios = await PortfolioModel.update({id: req.params.id}, req.body)
+// console.log(portfolios[req.params.id])
+
+//   console.log(portfolios)
+//   res.send(portfolios)
+// });
+
+
+// router.delete('/:id', async function (req, res) {
+//   const portfolios = await PortfolioModel.find()
+// console.log(portfolios[req.params.id])
+//   console.log(portfolios)
+//   res.send(portfolios)
+// });
+
+
 
 module.exports = router;
