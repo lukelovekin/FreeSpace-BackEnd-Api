@@ -4,7 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan'); // Helps with login messaging
 var cors = require('cors')
 require('dotenv').config()
-require('./util/connectToDb.js').call()
+// require('./util/connectToDb.js').call()
 
 
 // console.log(process.env)
@@ -16,7 +16,21 @@ var portfoliosRouter = require('./routes/portfolios');
 var app = express();
 app.use(cors())
 
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:8hZtTwsPNV72ysh3@cluster0.1rjn7.mongodb.net/${process.env.DB_PASS}?retryWrites=true&w=majority`,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    },
 
+    error => {
+        if (error) {
+            console.log("There was an Error connecting to the DB")
+            throw error
+        } else {
+            console.log("Connected to the DB")
+        }
+    }
+)
 
 app.use(logger('dev')); // morgan is the logger
 app.use(express.json()); // body-parser with new express object
