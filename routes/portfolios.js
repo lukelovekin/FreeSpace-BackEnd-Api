@@ -8,7 +8,7 @@ const { PortfolioModel } = require('../models/portfolio')
 /* GET portfolios listing. */
 router.get('/', async function(req, res) {
   const portfolios = await PortfolioModel.find()    
-  console.log(portfolios)
+  // console.log(portfolios)
   res.send(portfolios);
 });
 
