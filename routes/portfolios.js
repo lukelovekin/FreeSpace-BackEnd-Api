@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const cors = require('cors')
-const { PortfolioModel } = require('../schema')
+const { PortfolioModel } = require('../models/portfolio')
 
 // can make this less dry
 
@@ -13,9 +13,16 @@ router.get('/', async function(req, res) {
 });
 
 router.post('/', cors(),async function (req, res) {
-  await PortfolioModel.create(req.body)
-  res.sendStatus(201)
+  const { uid, bio } = req.body
+  await PortfolioModel.create({
+    uid, 
+    bio
+  })
+  .then(doc => res.send(doc))
+  .catch(err => res.send(err))
 });
+
+
 
 
 

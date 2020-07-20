@@ -1,9 +1,13 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan'); // Helps with login messaging
+require('dotenv').config()
+// require('./util/connectToDb.js').call()
+var express = require('express')
+var path = require('path')
+var cookieParser = require('cookie-parser')
+var logger = require('morgan') // Helps with login messaging
 var cors = require('cors')
-const mongoose = require('mongoose')
+var mongoose = require('mongoose')
+
+// console.log(process.env)
 
 var indexRouter = require('./routes/index');
 var portfoliosRouter = require('./routes/portfolios');
@@ -12,7 +16,11 @@ var app = express();
 app.use(cors())
 
 // mongoose.connect("mongodb://localhost/freespace", { useNewUrlParser: true }) //this works with the mongo shell
-mongoose.connect("mongodb+srv://fluffy:8hZtTwsPNV72ysh3@cluster0.1rjn7.mongodb.net/freespace?retryWrites=true&w=majority", { useNewUrlParser: true })
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.1rjn7.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`, { 
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+
+ })
 
 app.use(logger('dev')); // morgan is the logger
 app.use(express.json()); // body-parser with new express object
