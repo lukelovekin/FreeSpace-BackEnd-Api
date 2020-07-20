@@ -1,5 +1,5 @@
-require('dotenv').config()
-require('./util/connectToDb.js').call()
+// require('dotenv').config()
+require('./util/dbConnection.js').call()
 var express = require('express')
 var path = require('path')
 var cookieParser = require('cookie-parser')
@@ -8,6 +8,7 @@ var cors = require('cors')
 var mongoose = require('mongoose')
 
 // console.log(process.env)
+console.log(process.env.ENV)
 
 var indexRouter = require('./routes/index');
 var portfoliosRouter = require('./routes/portfolios');
