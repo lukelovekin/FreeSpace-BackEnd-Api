@@ -9,7 +9,6 @@ const { PortfolioModel } = require('../models/portfolio')
 /* GET all portfolios listing. */
 router.get('/', async function(req, res) {
   const portfolios = await PortfolioModel.find()    
-  // console.log(portfolios)
   res.status(200).send(portfolios)
 });
 
@@ -27,9 +26,9 @@ router.post('/', cors(),async function (req, res) {
 
 // GET one portfolio
 router.get('/:id', async function(req, res) {
-  const portfolio = await PortfolioModel.findById(req.params.id)
+  const portfolio = await PortfolioModel.find({id: req.params.id})
     .then(doc => {
-      if (!doc) {return res.status(404).end()}
+      if (!doc) { return res.status(404).end() }
       return res.status(200).send(doc)
     })
     .catch(err => res.send(err))

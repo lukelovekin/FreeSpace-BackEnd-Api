@@ -9,7 +9,8 @@ const PortfolioSchema = new mongoose.Schema({
     bio: {
         type: String,
         required: true
-    } 
+    },
+    creator: {}
 })
 
 const PortfolioModel = mongoose.model("portfolios", PortfolioSchema) // the "portfolios" refers to the DB collection

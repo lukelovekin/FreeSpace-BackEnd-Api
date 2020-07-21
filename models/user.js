@@ -9,12 +9,12 @@ const UserSchema = new mongoose.Schema({
     },
     displayName: {
         type: String, 
-    },
-    portfolio: {
-        type: Schema.Types.ObjectId,
-        ref: "portfolio"
-
     }
+    // portfolio: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "portfolio"
+
+    // }
 })
 
 // UserScema.plugin(passportLocalMongoose)
