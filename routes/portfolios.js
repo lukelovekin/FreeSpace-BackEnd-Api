@@ -4,25 +4,46 @@ const cors = require('cors')
 const { PortfolioModel } = require('../models/portfolio')
 
 // can make this less dry
+//database queries are asynchronous
 
-/* GET portfolios listing. */
+/* GET all portfolios listing. */
 router.get('/', async function(req, res) {
   const portfolios = await PortfolioModel.find()    
-  console.log(portfolios)
-  res.send(portfolios);
+  // console.log(portfolios)
+  res.status(200).send(portfolios)
 });
 
+// POST new portfolio data
 router.post('/', cors(),async function (req, res) {
-  const { uid, bio } = req.body
+  const { id, bio } = req.body
   await PortfolioModel.create({
-    uid, 
+    id, 
     bio
   })
-  .then(doc => res.send(doc))
-  .catch(err => res.send(err))
+  .then(doc => res.status(200).send(doc))
+  .catch(err => res.status(400).send(err))
 });
 
 
+// GET one portfolio
+router.get('/:id', async function(req, res) {
+  const portfolio = await PortfolioModel.findById(req.params.id)
+    .then(doc => {
+      if (!doc) {return res.status(404).end()}
+      return res.status(200).send(doc)
+    })
+    .catch(err => res.send(err))
+})
+
+// DELETE one portfolio
+router.delete('/:id', (req, res) => {
+  PortfolioModel.deleteOne({id: req.params.id})
+    .then(doc =>  {
+      if (!doc) {return res.status(404).end()}
+      return res.status(200).send(doc)
+    })
+    .catch(err => res.send(err))
+})
 
 
 

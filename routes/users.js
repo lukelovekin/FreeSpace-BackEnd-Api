@@ -15,7 +15,7 @@ router.get('/', async function (req, res) {
 router.post('/', cors(), async function (req, res) {
     const { uid, bio } = req.body
     await PortfolioModel.create({
-        uid,
+        id,
         bio
     })
         .then(doc => res.send(doc))

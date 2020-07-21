@@ -22,8 +22,8 @@ app.use(express.urlencoded({ extended: false })); // decode the urlencoded data
 app.use(cookieParser()); // process and cookies
 app.use(express.static(path.join(__dirname, 'public'))); // generating path and joing public
 
-app.use('/', indexRouter);
-app.use('/api/portfolios', portfoliosRouter);
+app.use('/', indexRouter); // putting api here as shown in matts videos made the tests fail
+app.use('/portfolios', portfoliosRouter);
 
 module.exports =  app
 
