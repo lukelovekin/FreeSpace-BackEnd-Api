@@ -18,14 +18,23 @@ passport.deserializeUser(function (user, done) {
 // Initializing a Local Strategy on the User Model
 passport.use(User.createStrategy())
 
+let url
+
+//hide these in env later and modularise
+if (process.env.ENV == 'development') {
+    url = "http://localhost:4000/users/auth/google/callback"
+} else {
+    url = "https://free-space-api.herokuapp.com/users/auth/google/callback"
+}
+
+
 //Google Strategy
 // creating google strategy, import package
 // put all this into env. XXXXXXXXXXXXXXXXXXXXXX
 passport.use(new GoogleStrategy({
     clientID: "601450797431-8mnjdu4eme0vhu01s1n619r5tph47st3.apps.googleusercontent.com",
     clientSecret: "0FZLFqc3j5l7Azhrxd97I1Cv",
-    // callbackURL: "http://localhost:4000/users/auth/google/callback"
-    callbackURL: "https://free-space-api.herokuapp.com/users/auth/google/callback"
+    callbackURL: url
 },
     function (accessToken, refreshToken, profile, cb) {
         // we are calling that findOrCreate function that was created in models/user
