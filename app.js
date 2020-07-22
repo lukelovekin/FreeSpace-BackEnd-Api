@@ -54,7 +54,7 @@ const upload = multer({ storage: storage, fileFilter: imageFilter })
 const cloudinary = require(“cloudinary”)
 
 cloudinary.config({
-    cloud_name: “lthomas92”, //ENTER YOUR CLOUDINARY NAME
+    cloud_name: “dt8aodbvm”,
     api_key: process.env.CLOUDINARY_API_KEY, // THIS IS COMING FROM CLOUDINARY WHICH WE SAVED FROM EARLIER
     api_secret: process.env.CLOUDINARY_API_SECRET // ALSO COMING FROM CLOUDINARY WHICH WE SAVED EARLIER
 })
