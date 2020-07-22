@@ -34,15 +34,21 @@ app.use(express.static(path.join(__dirname, 'public'))) // generating path and j
 // app.use(express.urlencoded({ extended: false })) // decode the urlencoded data
 
 
-let url
-//hide these in env later, modularise thise
-if (process.env.ENV == 'development') {
-    app.use(cors({origin: "https://localhost:3000/", credentials: true }))
-} else {
-    app.use(cors({origin: "https://free-space.gq/", credentials: true}))
+// let url
+// //hide these in env later, modularise thise
+// if (process.env.ENV == 'development') {
+//     url = "http://localhost:3000"
+// } else {
+//     url = "https://free-space.gq/"
+// }
+
+app.use(cors(
+    {
+    origin: "https://free-space.gq/",
+    // origin: "http://localhost:3000",
+    credentials: true
 }
-
-
+))
 
 
 // Saving session
