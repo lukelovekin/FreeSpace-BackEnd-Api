@@ -13,7 +13,7 @@ router.get('/', async function(req, res) {
 });
 
 // POST new portfolio data
-router.post('/', cors(),async function (req, res) {
+router.post('/', cors(), async function (req, res) {
   const { id, bio } = req.body
   await PortfolioModel.create({
     id, 
@@ -23,6 +23,8 @@ router.post('/', cors(),async function (req, res) {
   .catch(err => res.status(400).send(err))
 });
 
+
+// probably wont use req.params.id
 
 // GET one portfolio
 router.get('/:id', async function(req, res) {
