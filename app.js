@@ -32,6 +32,27 @@ module.exports =  app
 // when i post to /portfolios if my data doesnt match my schema expect a correct status error and if it is almso correct status code
 
 
+// image upload routes TODO: modularise
+app.post('/add'), upload.single('image'), (req, res) => {
+    cloudinary.vs.uploader.upload(req.file.path, function(err, result) {
+        if (err) {
+            req.json(err.message)
+        }
+        req.body.image = result.sercure_url
+        //add image's public_id to image object
+        req.body.imageId = result.public_id
+
+        Image.create(req.body, function(err, image) {
+            if (err) {
+                res.json(err.message)
+                return res.redirect('/')
+            }
+        })
+    })
+}
+
+
+
 
 
 //IMAGE UPLOAD CONFIGURATION
