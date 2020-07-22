@@ -37,17 +37,12 @@ app.use(express.static(path.join(__dirname, 'public'))) // generating path and j
 let url
 //hide these in env later, modularise thise
 if (process.env.ENV == 'development') {
-    url = "http://localhost:3000"
+    app.use(cors({origin: "https://localhost:3000/", credentials: true }))
 } else {
-    url = "https://free-space.gq/"
+    app.use(cors({origin: "https://free-space.gq/", credentials: true}))
 }
 
-app.use(cors(
-    {
-    origin: url,
-    credentials: true
-}
-))
+
 
 
 // Saving session
