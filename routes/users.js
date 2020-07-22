@@ -21,10 +21,14 @@ router.get('/auth/google/callback', passport.authenticate('google', { failureRed
         User.create({googleId: req.user.id, displayName: req.user.displayName}, function(err) {
             if (err) {
                 User.findOne({googleId: req.user.id}, function() {
-                    res.redirect('http://localhost:3000')
+                    // res.redirect('http://localhost:3000')
+                    res.redirect('https://freespace.gq')
+
                 })
             } else {
-                res.redirect('http://localhost:3000')
+                // res.redirect('http://localhost:3000')
+                    res.redirect('https://freespace.gq')
+
             }
 
         })
