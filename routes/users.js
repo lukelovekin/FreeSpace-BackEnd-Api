@@ -5,13 +5,15 @@ const { User } = require('../models/user')
 const { request } = require('express')
 
 
-
+if (process.env.ENV == 'development') {
+    url = "http://localhost:3000"
+} else {
+    url = "https://free-space.gq"
+}
 
 router.get('/failed', (req, res) => {
-    res.redirect('http://localhost:3000')
+    res.redirect(url)
 })
-
-
 
     // Google Auth
 router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }))
@@ -21,16 +23,11 @@ router.get('/auth/google/callback', passport.authenticate('google', { failureRed
         User.create({googleId: req.user.id, displayName: req.user.displayName}, function(err) {
             if (err) {
                 User.findOne({googleId: req.user.id}, function() {
-                    // res.redirect('http://localhost:3000')
-                    res.redirect('https://free-space.gq')
-
+                    res.redirect(url)
                 })
             } else {
-                // res.redirect('http://localhost:3000')
-                    res.redirect('https://free-space.gq')
-
+                    res.redirect(url)
             }
-
         })
     })
 
