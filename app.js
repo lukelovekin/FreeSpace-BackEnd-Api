@@ -30,3 +30,31 @@ module.exports =  app
 // when hit portfolios route, expected to get a page of portfolios
 // when i get portfolios/1 i should get teh first portfolio
 // when i post to /portfolios if my data doesnt match my schema expect a correct status error and if it is almso correct status code
+
+
+
+
+//IMAGE UPLOAD CONFIGURATION
+const multer = require('multer')
+const storage = multer.diskStorage({
+    filename: function(req, file, callback) {
+        callback(null, Date.now() + file.originalname)
+    }
+})
+
+const imageFilter = function(req, file, cb) {
+    // accept image files only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        return cb(new Error('Only image files are accepted!'), false)
+    }
+    cb(null, true)
+}
+
+const upload = multer({ storage: storage, fileFilter: imageFilter })
+const cloudinary = require(“cloudinary”)
+
+cloudinary.config({
+    cloud_name: “lthomas92”, //ENTER YOUR CLOUDINARY NAME
+    api_key: process.env.CLOUDINARY_API_KEY, // THIS IS COMING FROM CLOUDINARY WHICH WE SAVED FROM EARLIER
+    api_secret: process.env.CLOUDINARY_API_SECRET // ALSO COMING FROM CLOUDINARY WHICH WE SAVED EARLIER
+})
