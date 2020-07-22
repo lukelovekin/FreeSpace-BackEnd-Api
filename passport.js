@@ -21,7 +21,7 @@ passport.use(User.createStrategy())
 let url
 
 //hide these in env later and modularise
-if (process.env.ENV == 'development') {
+if (process.env.ENV === 'development') {
     url = "http://localhost:4000/users/auth/google/callback"
 } else {
     url = "https://free-space-api.herokuapp.com/users/auth/google/callback"

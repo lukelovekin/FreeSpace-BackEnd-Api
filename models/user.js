@@ -7,9 +7,6 @@ const UserSchema = new mongoose.Schema({
     googleId: {
         type: String
     },
-    discordId: {
-        type: String
-    },
     displayName: {
         type: String
     },

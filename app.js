@@ -34,17 +34,11 @@ app.use(express.static(path.join(__dirname, 'public'))) // generating path and j
 // app.use(express.urlencoded({ extended: false })) // decode the urlencoded data
 
 
-let url
-//hide these in env later, modularise thise
-if (process.env.ENV == 'development') {
-    url = "http://localhost:3000"
-} else {
-    url = "https://free-space.gq/"
-}
-
 app.use(cors(
     {
-    origin: url,
+    origin: "https://free-space.gq",
+    // origin: "localhost:3000",
+
     // allow client to send credentials like cookies and headers
     credentials: true
 }

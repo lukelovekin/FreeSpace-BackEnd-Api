@@ -5,7 +5,7 @@ const { User } = require('../models/user')
 const { request } = require('express')
 
 
-if (process.env.ENV == 'development') {
+if (process.env.ENV === 'development') {
     url = "http://localhost:3000"
 } else {
     url = "https://free-space.gq"

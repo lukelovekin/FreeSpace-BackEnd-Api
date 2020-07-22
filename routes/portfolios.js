@@ -46,33 +46,4 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.send(err))
 })
 
-
-
-
-// router.get('/:id', async function (req, res) {
-//   const portfolios = await PortfolioModel.find()
-// res.send(portfolios[req.params.id])
-//   console.log(portfolios)
-//   res.send(portfolios)
-// });
-
-
-// router.put('/:id', async function (req, res) {
-//   const portfolios = await PortfolioModel.update({id: req.params.id}, req.body)
-// console.log(portfolios[req.params.id])
-
-//   console.log(portfolios)
-//   res.send(portfolios)
-// });
-
-
-// router.delete('/:id', async function (req, res) {
-//   const portfolios = await PortfolioModel.find()
-// console.log(portfolios[req.params.id])
-//   console.log(portfolios)
-//   res.send(portfolios)
-// });
-
-
-
 module.exports = router;
