@@ -22,12 +22,12 @@ router.get('/auth/google/callback', passport.authenticate('google', { failureRed
             if (err) {
                 User.findOne({googleId: req.user.id}, function() {
                     // res.redirect('http://localhost:3000')
-                    res.redirect('https://freespace.gq')
+                    res.redirect('https://free-space.gq')
 
                 })
             } else {
                 // res.redirect('http://localhost:3000')
-                    res.redirect('https://freespace.gq')
+                    res.redirect('https://free-space.gq')
 
             }
 

@@ -10,6 +10,10 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const logger = require('morgan') // Helps with login messaging
 
+
+// check urls, 1 is passport.js 2 in users.js 1 cors below
+
+
 require('./util/dbConnection.js').call()
 require('./passport')
 
@@ -31,8 +35,8 @@ app.use(express.static(path.join(__dirname, 'public'))) // generating path and j
 
 app.use(cors(
     {
-    origin: "http://localhost:3000",
-    // origin: "https://free-space.gq/",
+    // origin: "http://localhost:3000",
+    origin: "https://free-space.gq/",
     // allow client to send credentials like cookies and headers
     credentials: true
 }
