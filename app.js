@@ -44,7 +44,7 @@ app.use(express.static(path.join(__dirname, 'public'))) // generating path and j
 
 app.use(cors(
     {
-    origin: "https://free-space.gq/",
+    origin: "https://free-space.gq",
     // origin: "http://localhost:3000",
     credentials: true
 }
