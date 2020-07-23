@@ -18,15 +18,13 @@ passport.deserializeUser(function (user, done) {
 // Initializing a Local Strategy on the User Model
 passport.use(User.createStrategy())
 
-let url
 
-//hide these in env later and modularise
-if (process.env.ENV === 'development') {
+let url
+if (process.env.ENV == 'development') {
     url = "http://localhost:4000/users/auth/google/callback"
 } else {
     url = "https://free-space-api.herokuapp.com/users/auth/google/callback"
 }
-
 
 //Google Strategy
 // creating google strategy, import package

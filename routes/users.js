@@ -5,7 +5,8 @@ const { User } = require('../models/user')
 const { request } = require('express')
 
 
-if (process.env.ENV === 'development') {
+let url
+if (process.env.ENV == 'development') {
     url = "http://localhost:3000"
 } else {
     url = "https://free-space.gq"
@@ -26,11 +27,10 @@ router.get('/auth/google/callback', passport.authenticate('google', { failureRed
                     res.redirect(url)
                 })
             } else {
-                    res.redirect(url)
+                res.redirect(url)
             }
         })
     })
-
 
 
     //Login user (Local Strategy)
