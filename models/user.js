@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const passportLocalMongoose = require("passport-local-mongoose")
+const { PortfolioSchema } = require('./portfolio')
 
 
 const UserSchema = new mongoose.Schema({
@@ -8,11 +9,10 @@ const UserSchema = new mongoose.Schema({
         type: String
     },
     displayName: {
-        type: String
+        type: String,
+        unique: true
     },
-    // portfolio: {
-
-    // }
+    // portfolio: PortfolioSchema
 })
 
 // creating a clone of UserSchema, BEFORE I plugin the passportLocalMongoose addons
