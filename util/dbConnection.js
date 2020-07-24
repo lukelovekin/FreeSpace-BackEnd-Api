@@ -25,6 +25,7 @@ function dbConnection() {
                 throw error
             } else {
                 console.log("Connected to the DB")
+                console.log(db)
             }
         }
 

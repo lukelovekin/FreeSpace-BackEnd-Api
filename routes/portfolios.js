@@ -13,17 +13,20 @@ router.get('/', async function(req, res) {
 });
 
 // POST new portfolio data
-router.post('/', cors(), async function (req, res) {
-  const { name, bio, images, links, user } = req.body
-  await PortfolioModel.create({
+router.post('/', async function (req, res) {
+  const { name, bio, images, links } = req.body
+  const {user} = req
+  console.log(user)
+  PortfolioModel.create({
     name, 
     bio,
-    images,
+    // images,
     links,
-    user
+    user: user._id
   })
   .then(doc => res.status(200).send(doc))
-  .catch(err => res.status(400).send(err))
+  .catch(err => {console.log(err) 
+      res.status(400).send(err)})
 });
 
 

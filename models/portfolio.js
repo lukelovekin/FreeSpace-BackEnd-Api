@@ -6,26 +6,17 @@ const PortfolioSchema = new mongoose.Schema({
     name: { 
         type: String,
         required: true,
-        unique: true
+        // unique: true
     },
     bio: {
         type: String,
         required: true
     },
     // images: [],
-    links: mongoose.Schema.Types.Mixed,
-    //  {
-        // facebook: String,
-        // instagram: String,
-        // linkedin: String,
-        // email: String,
-        // twitter: String,
-        // youtube: String,
-        // other: String
-    // },
-    user: {
+    links: [mongoose.Schema.Types.Mixed],
+    user: { 
         type: mongoose.Schema.Types.ObjectId,
-        // ref: 'users'
+        ref: 'users'
     }
 })
 
