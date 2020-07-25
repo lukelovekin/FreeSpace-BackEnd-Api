@@ -13,20 +13,30 @@ router.get('/', async function(req, res) {
 });
 
 // POST new portfolio data
-router.post('/', async function (req, res) {
-  const { name, bio, images, links } = req.body
+router.post('/', async (req, res) => {
+  const { name, bio, links, imageUrl} = req.body
   const {user} = req
-  console.log(user)
+
+  console.log(req)
+
   PortfolioModel.create({
     name, 
     bio,
-    // images,
     links,
-    user: user._id
+    user: user._id,
+    imageUrl
+    
   })
   .then(doc => res.status(200).send(doc))
   .catch(err => {console.log(err) 
       res.status(400).send(err)})
+
+
+
+  // app.get('/getLatest', async (req, res) => {
+  //   const getImage = await Image.findOne().sort({ _id: -1 })
+  //   res.json(getImage.imageUrl)
+  // });
 });
 
 

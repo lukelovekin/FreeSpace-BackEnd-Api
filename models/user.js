@@ -11,8 +11,8 @@ const UserSchema = new mongoose.Schema({
     displayName: {
         type: String,
         unique: true
-    },
-    // portfolio: PortfolioSchema
+    }
+
 })
 
 // creating a clone of UserSchema, BEFORE I plugin the passportLocalMongoose addons
