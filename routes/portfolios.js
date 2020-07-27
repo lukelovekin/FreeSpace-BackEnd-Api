@@ -17,8 +17,6 @@ router.post('/', async (req, res) => {
   const { name, bio, links, imageUrl} = req.body
   const {user} = req
 
-  console.log(req)
-
   PortfolioModel.create({
     name, 
     bio,
@@ -30,13 +28,6 @@ router.post('/', async (req, res) => {
   .then(doc => res.status(200).send(doc))
   .catch(err => {console.log(err) 
       res.status(400).send(err)})
-
-
-
-  // app.get('/getLatest', async (req, res) => {
-  //   const getImage = await Image.findOne().sort({ _id: -1 })
-  //   res.json(getImage.imageUrl)
-  // });
 });
 
 
@@ -53,13 +44,27 @@ router.get('/:id', async function(req, res) {
 })
 
 // DELETE one portfolio
-router.delete('/:id', (req, res) => {
-  PortfolioModel.deleteOne({id: req.params.id})
-    .then(doc =>  {
-      if (!doc) {return res.status(404).end()}
-      return res.status(200).send(doc)
-    })
-    .catch(err => res.send(err))
-})
+// router.delete('/:id', (req, res) => {
+//   PortfolioModel.deleteOne({id: req.params.id})
+//     .then(doc =>  {
+//       if (!doc) {return res.status(404).end()}
+//       return res.status(200).send(doc)
+//     })
+//     .catch(err => res.send(err))
+// })
+
+// // Update
+// router.put('/:id', jsonParser, function (req, res, next) {
+//   Blog.updateOne({ '_id': req.params.id }, { ...req.body }).orFail()
+//     .then(() => res.send(202)) // 202: accepted
+//     .catch((err) => res.status(400).send(err))
+// })
+
+// // Delete
+// router.delete('/:id', function (req, res, next) {
+//   Blog.remove({ '_id': req.params.id })
+//     .then(() => res.send(202)) // 202: accepted
+//     .catch((err) => res.status(404).send(err))
+// })
 
 module.exports = router;
