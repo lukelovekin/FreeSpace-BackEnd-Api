@@ -19,7 +19,7 @@ const PortfolioSchema = new mongoose.Schema({
         ref: 'users'
     },
     imageUrl: {
-        type: String
+        type: Array
     }
 })
 
