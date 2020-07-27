@@ -17,6 +17,8 @@ function dbConnection() {
         {
             useNewUrlParser: true,
             useUnifiedTopology: true,
+            useCreateIndex: true
+
         },
 
         error => {

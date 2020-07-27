@@ -33,7 +33,7 @@ describe("/portfolios", () => {
         it("should save to the database", done => {
             request(app)
                 .post('/portfolios')
-                .send({"id": 1, "bio": "smelly"})  // change this as we decide on db data
+                .send({"name": "james", "bio": "neeeded bio"}) 
                 .expect(200, done)
                 
         })

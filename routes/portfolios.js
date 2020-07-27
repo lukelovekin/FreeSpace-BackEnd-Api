@@ -3,6 +3,7 @@ var router = express.Router();
 const cors = require('cors')
 const { PortfolioModel } = require('../models/portfolio')
 
+
 // can make this less dry
 //database queries are asynchronous
 
@@ -21,9 +22,8 @@ router.post('/', async (req, res) => {
     name, 
     bio,
     links,
-    user: user._id,
+    user: user._id, //This breaks the test
     imageUrl
-    
   })
   .then(doc => res.status(200).send(doc))
   .catch(err => {console.log(err) 
@@ -31,27 +31,22 @@ router.post('/', async (req, res) => {
 });
 
 
-// probably wont use req.params.id
-
-// GET one portfolio
-router.get('/:id', async function(req, res) {
-  const portfolio = await PortfolioModel.find({id: req.params.id})
-    .then(doc => {
-      if (!doc) { return res.status(404).end() }
-      return res.status(200).send(doc)
-    })
+// DELETE one portfolio
+router.delete('/:id', (req, res) => {
+  PortfolioModel.findOneAndRemove({"_id": req.params.id})
+    .then(res =>  { res.send(200)})
     .catch(err => res.send(err))
+    console.log(req.body)
+ 
 })
 
-// DELETE one portfolio
-// router.delete('/:id', (req, res) => {
-//   PortfolioModel.deleteOne({id: req.params.id})
-//     .then(doc =>  {
-//       if (!doc) {return res.status(404).end()}
-//       return res.status(200).send(doc)
-//     })
-//     .catch(err => res.send(err))
-// })
+// this route not used as front end uses state on front end to do this instead
+router.get('/:id', async function (req, res) {
+  const portfolios = await PortfolioModel.find()
+  res.status(200).send(portfolios)
+});
+
+
 
 // // Update
 // router.put('/:id', jsonParser, function (req, res, next) {
