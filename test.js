@@ -24,7 +24,7 @@ describe("/portfolios", () => {
                 .expect(200)
                 .end(function(error, response) {
                     if (error) return done(error)
-                    assert(response.body, [])
+                    assert(response.body, "")
                     done()
                 })
         })
