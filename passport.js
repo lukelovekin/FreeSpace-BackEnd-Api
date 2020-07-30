@@ -29,8 +29,8 @@ if (process.env.ENV == 'development') {
 //Google Strategy
 // creating google strategy, import package
 passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLI_ID,
-    clientSecret: process.env.GOOGLE_SECRET,
+    clientID: "601450797431-8mnjdu4eme0vhu01s1n619r5tph47st3.apps.googleusercontent.com",
+    clientSecret: "0FZLFqc3j5l7Azhrxd97I1Cv",
     callbackURL: url
 },
     function (accessToken, refreshToken, profile, cb) {
