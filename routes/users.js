@@ -4,14 +4,15 @@ const passport = require('passport')
 const { User } = require('../models/user')
 const { request } = require('express')
 
-
+// Environment setups
 let url
 if (process.env.ENV == 'development') {
-    url = "http://localhost:3000"
+    url = process.env.DEV_URL
 } else {
-    url = "https://free-space.gq"
+    url = process.env.PROD_URL
 }
 
+    // if login fails
 router.get('/failed', (req, res) => {
     res.redirect(url)
 })

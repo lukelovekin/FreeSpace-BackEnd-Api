@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const passportLocalMongoose = require("passport-local-mongoose")
 const { PortfolioSchema } = require('./portfolio')
 
-
+//Database Schema for User
 const UserSchema = new mongoose.Schema({
     // need to create an id field for each one of our oauth providers
     googleId: {
@@ -44,18 +44,6 @@ OauthUserSchema.statics.findOrCreate = function findOrCreate(profile, provider, 
         }
     })
 }
-
-// UserSchema plugin adding {
-// username: {
-// type: String,
-// required: true,
-// unique: true
-// },
-// password: {
-// type: String,
-// required: true
-// }
-// }
 
 module.exports = {
     User: mongoose.model('users', UserSchema),

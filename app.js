@@ -1,4 +1,3 @@
-// require('dotenv').config()
 const mongoose = require('mongoose')
 const express = require('express')
 const cors = require('cors')
@@ -10,10 +9,7 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const logger = require('morgan') // Helps with login messaging
 
-
-// check urls, 1 is passport.js 2 in users.js 1 cors below
-
-
+//this is the call to the DBs
 require('./util/dbConnection.js').call()
 require('./passport')
 
@@ -22,7 +18,7 @@ const indexRouter = require('./routes/index');
 const portfoliosRouter = require('./routes/portfolios')
 const usersRouter = require('./routes/users');
 
-// console.log(process.env)
+// console logs the environment working in
 console.log(process.env.ENV)
 
 // Middleware
@@ -30,16 +26,19 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(logger('dev')) // morgan is the logger
 app.use(express.static(path.join(__dirname, 'public'))) // generating path and join public
+
+//not needed as express includes it
 // app.use(express.json()) // body-parser with new express object
 // app.use(express.urlencoded({ extended: false })) // decode the urlencoded data
 
 let url
 if (process.env.ENV == 'development') {
-    url = "http://localhost:3000"
+    url = process.env.DEV_URL
 } else  {
-    url = "https://free-space.gq"
+    url = process.env.PROD_URL
 }
 
+//front end server to backend server permission
 app.use(cors(
     {
     origin: url,

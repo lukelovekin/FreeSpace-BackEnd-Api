@@ -21,17 +21,16 @@ passport.use(User.createStrategy())
 
 let url
 if (process.env.ENV == 'development') {
-    url = "http://localhost:4000/users/auth/google/callback"
+    url = process.env.AUTH_DEV_URL
 } else {
-    url = "https://free-space-api.herokuapp.com/users/auth/google/callback"
+    url = process.env.AUTH_PROD_URL
 }
 
 //Google Strategy
 // creating google strategy, import package
-// put all this into env. XXXXXXXXXXXXXXXXXXXXXX
 passport.use(new GoogleStrategy({
-    clientID: "601450797431-8mnjdu4eme0vhu01s1n619r5tph47st3.apps.googleusercontent.com",
-    clientSecret: "0FZLFqc3j5l7Azhrxd97I1Cv",
+    clientID: process.env.GOOGLE_CLI_ID,
+    clientSecret: process.env.GOOGLE_SECRET,
     callbackURL: url
 },
     function (accessToken, refreshToken, profile, cb) {
