@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
-const { UserSchema } = require('./user')
 
-
+// Database Schema for Portfolio
 const PortfolioSchema = new mongoose.Schema({
     name: { 
         type: String,

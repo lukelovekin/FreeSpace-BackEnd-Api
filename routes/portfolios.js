@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 const { PortfolioModel } = require('../models/portfolio')
 
-
 // can make this less dry
 //database queries are asynchronous
 
@@ -49,24 +48,6 @@ router.get('/:id', async function (req, res) {
 router.patch('/:id', (req, res, next) => {
   PortfolioModel.findByIdAndUpdate({ _id: req.params.id} , {...req.body}, (req, res))
     .then(doc => res.status(202).send(doc))
-    .catch(err => {
-      console.log(err)
-      res.status(400).send(err)
-    })
-});
-
-router.post('/', (req, res) => {
-  const { name, bio, links, imageUrl } = req.body
-  const { user } = req
-
-  PortfolioModel.create({
-    name,
-    bio,
-    links,
-    // user: user._id, //This breaks the test
-    imageUrl
-  })
-    .then(doc => res.status(200).send(doc))
     .catch(err => {
       console.log(err)
       res.status(400).send(err)
