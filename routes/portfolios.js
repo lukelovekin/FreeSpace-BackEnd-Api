@@ -47,21 +47,6 @@ router.get('/:id', async function (req, res) {
 
 // Update
 router.patch('/:id', (req, res, next) => {
-  // const { name, bio, links, imageUrl } = req.body
-  // const { user } = req
-  
-//  Object.entries(req.body).map((item) => {
-//     if (item === ""){
-//       delete req.body[item]
-//     }
-//     return req.body
-//   })
-  // let doc = await Model.findById(params.id)
-  // req.body.forEach(e => {
-
-  // })
-  console.log(req.body)
-  
   PortfolioModel.findByIdAndUpdate({ _id: req.params.id} , {...req.body}, (req, res))
     .then(doc => res.status(202).send(doc))
     .catch(err => {
@@ -78,7 +63,7 @@ router.post('/', (req, res) => {
     name,
     bio,
     links,
-    user: user._id, //This breaks the test
+    // user: user._id, //This breaks the test
     imageUrl
   })
     .then(doc => res.status(200).send(doc))
